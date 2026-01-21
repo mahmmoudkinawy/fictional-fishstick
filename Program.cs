@@ -5,7 +5,7 @@ class Program
 {
     private static ElasticClient CreateClient()
     {
-        var settings = new ConnectionSettings(new Uri("http://localhost:9200"))
+        var settings = new ConnectionSettings(new Uri("http://81.17.96.160:9200/"))
             .DefaultIndex("default-index");
         return new ElasticClient(settings);
     }
