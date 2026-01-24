@@ -14,7 +14,7 @@ class Program
     {
         var client = CreateClient();
 
-        var indexes = new List<string> { "products", "people", "orders", "companies", "reviews", "categories", "addresses", "transactions", "books", "movies" };
+        var indexes = new List<string> { "products_ar" };
 
         foreach (var index in indexes)
         {
@@ -25,7 +25,7 @@ class Program
                 await client.Indices.CreateAsync(index);
             }
 
-            await SeedIndex(client, index, 1_000_000);
+            await SeedIndex(client, index, 1_000);
         }
 
         Console.WriteLine("Seeding completed!");
@@ -57,7 +57,7 @@ class Program
         switch (index)
         {
             case "products":
-                return new Faker<Product>()
+                return new Faker<Product>("ar")
                     .RuleFor(p => p.Id, f => Guid.NewGuid().ToString())
                     .RuleFor(p => p.Name, f => f.Commerce.ProductName())
                     .RuleFor(p => p.Description, f => f.Commerce.ProductDescription())
