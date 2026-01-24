@@ -21,9 +21,10 @@ class Program
             Console.WriteLine($"Seeding index: {index}");
 
             if ((await client.Indices.ExistsAsync(index)).Exists)
-                await client.Indices.DeleteAsync(index);
+            {
+                await client.Indices.CreateAsync(index);
+            }
 
-            await client.Indices.CreateAsync(index);
             await SeedIndex(client, index, 1_000_000);
         }
 
