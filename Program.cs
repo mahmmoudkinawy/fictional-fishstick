@@ -33,7 +33,7 @@ class Program
 
     private static async Task SeedIndex(ElasticClient client, string index, int count)
     {
-        var batchSize = 10_000;
+        var batchSize = 10;
         int batches = count / batchSize;
 
         for (int i = 0; i < batches; i++)
